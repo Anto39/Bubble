@@ -1530,6 +1530,7 @@ bool ButtonPressed(void)
 		g_oIceBoxx.g_oDispensor.bColdButton = false;
 		g_oIceBoxx.g_oDispensor.bBubbleButton = false;
 	}
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

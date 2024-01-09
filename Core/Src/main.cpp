@@ -49,7 +49,7 @@
 #include "usart.h"
 #include <string>
 #include <cstdlib>
-#include "IceBoxx.h"
+
 
 /* USER CODE BEGIN Includes */
 #ifdef __cplusplus
@@ -65,6 +65,7 @@ extern "C" {
 #include "HotDegree.h"
 #include "Co2Pou.h"
 #include "Co2Bottle.h"
+#include "gaz.h"
 
 #ifdef __cplusplus
 }
@@ -112,21 +113,10 @@ uint16_t	u16ADCValueAvg1, u16ADCValueAvg2, u16ADCValueAvg3, u16ADCValueAvg4, u16
 bool		bState1, bState2, bState3, bState4, bState5, bState6, bState7, bState8, bState9, bState10, bState11, bState12, bState13;
 #endif
 
-etypeEau_t typeEau = EAU_NOTPRESSED;
-etypePage_t typePage;
-ecompresseur_t compresseur = comp_deactivated;
 eDDP_t DDP = DDP_deactivated;
-
-
-namespace boutons_t
-{
-	constexpr uint8_t BOUTON_EAU_FROIDE = 0;
-	constexpr uint8_t BOUTON_EAU_TEMP = 1;
-	constexpr uint8_t BOUTON_EAU_CARB = 2;
-	constexpr uint8_t BOUTON_Settings = 3;
-	constexpr uint8_t BOUTON_Alert = 4;
-	constexpr uint8_t NO_BOUTON_PRESSED = 5;
-};
+ecompresseur_t compresseur = comp_deactivated;
+etypePage_t typePage;
+etypeEau_t typeEau = EAU_NOTPRESSED;
 using namespace boutons_t;
 
 EspSlave espSlave((0x55<<1), hi2c1);
@@ -272,7 +262,6 @@ void ApplicationHWTest(void)
 */
 /* USER CODE END 0 */
 
-
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief		ApplicationFunctions
 /// \details	Functions for the main.
@@ -282,11 +271,7 @@ void ApplicationHWTest(void)
 /// \return		void.
 ////////////////////////////////////////////////////////////////////////////////
 
-
-/**
- * @brief FUNCTION TO CONTROL led , Will be use to know if we finished the init()
- * 
- */
+//FUNCTION TO CONTROL led , Will be use to know if we finished the init()
 void activateLed(){
 	HAL_GPIO_WritePin(MCUMAP_DO_LED_HB_PERIPH,MCUMAP_DO_LED_HB_PIN,GPIO_PIN_SET);
 }
@@ -300,7 +285,6 @@ void deactivateLed(){
 /**
  * Activating the Inlet Water
  */
-
 void activateAqueduct(){
 	HAL_GPIO_WritePin(MCUMAP_DO_SLND_AQUEDUCT_PERIPH, MCUMAP_DO_SLND_AQUEDUCT_PIN, GPIO_PIN_SET);
 }
@@ -698,10 +682,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	if (IceBoxxInit() == false) {
-		// Handle initialization failure
-		// ...
-	}
+
 
   /* USER CODE END Init */
 
@@ -733,7 +714,7 @@ int main(void)
   HomeTask();
 
   /* USER CODE BEGIN 2 */
-
+  IceBoxxInit();
 
   //Configuration for the 4 AC external controls
   /*Configure GPIO pins : PD10 */

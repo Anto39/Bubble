@@ -57,34 +57,6 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
-typedef enum
-{
-  PARAM,
-  EAU_FROIDE,
-  EAU_TEMPEREE,
-  EAU_CARBONATEE,
-  EAU_NOTPRESSED
-} etypeEau_t;
-
-typedef enum
-{
-  HomePage,
-  BucketLevelPage,
-  SettingsPage,
-  AlertPage
-} etypePage_t;
-
-typedef enum
-{
-  comp_activated,
-  comp_deactivated
-} ecompresseur_t;
-
-typedef enum
-{
-  DDP_activated,
-  DDP_deactivated
-} eDDP_t;
 
 /* USER CODE END Private defines */
 
