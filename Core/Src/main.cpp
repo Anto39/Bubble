@@ -585,7 +585,7 @@ void ButtonState()
 					}
 					break;
 
-				case BOUTON_EAU_TEMP:
+				case boutons_t::BOUTON_EAU_TEMP:
 					if(buttonStates.value()[i] == 1 && typePage == HomePage)
 					{
 						if(buttonStates.value()[i] == 1 && typeEau != EAU_TEMPEREE)
@@ -601,7 +601,7 @@ void ButtonState()
 					}
 					break;
 
-				case BOUTON_Settings:
+				case boutons_t::BOUTON_Settings:
 
 					//Settings button and language button actions
 					if(buttonStates.value()[i] == 1)// && SettingsClick == 1)
